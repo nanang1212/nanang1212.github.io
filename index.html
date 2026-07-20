@@ -375,211 +375,203 @@
         </div>
     </section>
 <!-- ==================================================== -->
-<!-- SECTION JADWAL KULIAH INTERAKTIF (SEBELUM CONTACT ME) -->
+<!-- INTERACTIVE TEACHING SCHEDULE SECTION (BEFORE CONTACT) -->
 <!-- ==================================================== -->
-<section id="jadwal-kuliah" class="py-12 px-5 bg-slate-50 font-sans">
+<section id="teaching-schedule" class="py-12 px-5 bg-slate-50 font-sans">
     <div class="max-w-6xl mx-auto">
         
-        <!-- BARIS JUDUL UTAMA (Klik untuk buka/tutup tabel) -->
+        <!-- HEADER BAR (Click to toggle accordion) -->
         <button onclick="toggleJadwal()" class="w-full flex items-center justify-between bg-slate-900 text-white p-5 rounded-t-lg shadow-md hover:bg-slate-800 transition-all focus:outline-none">
             <div class="flex items-center space-x-3 text-left">
                 <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                 </svg>
                 <div>
-                    <h2 class="text-base md:text-xl font-bold tracking-wide uppercase">Jadwal Perkuliahan / Mengajar (TA. 2026/2027)</h2>
-                    <p class="text-xs text-slate-400">Klik di sini untuk melihat atau menyembunyikan detail jadwal</p>
+                    <h2 class="text-base md:text-xl font-bold tracking-wide uppercase">Teaching Schedule (Academic Year 2026/2027)</h2>
+                    <p class="text-xs text-slate-400">Click here to expand or collapse the schedule details</p>
                 </div>
             </div>
-            <!-- Ikon Panah Indikator -->
+            <!-- Arrow Ikon Indikator -->
             <svg id="jk-chevron" class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
 
-        <!-- KONTEN TABEL (Awalnya Tersembunyi / Hidden) -->
+        <!-- TABLE CONTENT (Initially Hidden) -->
         <div id="jk-content" class="hidden bg-white rounded-b-lg shadow-md border-x border-b border-slate-200 p-6 transition-all duration-300">
             
-            <!-- TOMBOL FILTER HARI -->
+            <!-- DAY FILTER BUTTONS -->
             <div class="flex flex-wrap gap-2 mb-6 pb-4 border-b border-slate-100 items-center">
-                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider mr-2">Filter Hari:</span>
-                <button onclick="filterHari('semua')" id="btn-semua" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-900 text-white">Semua Hari</button>
-                <button onclick="filterHari('selasa')" id="btn-selasa" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Selasa</button>
-                <button onclick="filterHari('rabu')" id="btn-rabu" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Rabu</button>
-                <button onclick="filterHari('kamis')" id="btn-kamis" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Kamis</button>
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider mr-2">Filter by Day:</span>
+                <button onclick="filterHari('all')" id="btn-all" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-900 text-white">All Days</button>
+                <button onclick="filterHari('tuesday')" id="btn-tuesday" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Tuesday</button>
+                <button onclick="filterHari('wednesday')" id="btn-wednesday" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Wednesday</button>
+                <button onclick="filterHari('thursday')" id="btn-thursday" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Thursday</button>
             </div>
 
-            <!-- CONTAINER TABEL (Responsif Scroll) -->
+            <!-- TABLE CONTAINER (Responsive Scroll for Mobile) -->
             <div class="w-full overflow-x-auto">
-                <table class="w-full border-collapse min-w-[850px] text-left">
+                <table class="w-full border-collapse min-w-[750px] text-left">
                     <thead>
                         <tr class="bg-slate-100 text-slate-700 border-b border-slate-200">
                             <th class="w-[5%] text-center p-4 text-xs font-bold uppercase tracking-wider">No</th>
-                            <th class="w-[15%] p-4 text-xs font-bold uppercase tracking-wider">Hari & Waktu</th>
-                            <th class="w-[30%] p-4 text-xs font-bold uppercase tracking-wider">Mata Kuliah</th>
-                            <th class="w-[25%] p-4 text-xs font-bold uppercase tracking-wider">Dosen Pengajar</th>
-                            <th class="w-[25%] p-4 text-xs font-bold uppercase tracking-wider">Ruang & Gedung</th>
-                            <th class="w-[10%] text-center p-4 text-xs font-bold uppercase tracking-wider">Kelas</th>
+                            <th class="w-[20%] p-4 text-xs font-bold uppercase tracking-wider">Day & Time</th>
+                            <th class="w-[45%] p-4 text-xs font-bold uppercase tracking-wider">Course Title</th>
+                            <th class="w-[20%] p-4 text-xs font-bold uppercase tracking-wider">Room & Building</th>
+                            <th class="w-[10%] text-center p-4 text-xs font-bold uppercase tracking-wider">Class</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200 text-slate-700 text-sm">
-                        <!-- HARI SELASA -->
-                        <tr class="jk-row even:bg-slate-50/50" data-hari="selasa">
+                        <!-- TUESDAY -->
+                        <tr class="jk-row even:bg-slate-50/50" data-hari="tuesday">
                             <td class="text-center font-bold p-4">1</td>
                             <td class="p-4 align-top">
-                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-blue-100 text-blue-800">Selasa</span>
+                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-blue-100 text-blue-800">Tuesday</span>
                                 <div class="font-semibold text-slate-600">07:00 - 09:30</div>
                             </td>
                             <td class="p-4 align-top">
                                 <span class="font-mono font-bold bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-xs">FI582</span>
-                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">3 SKS</span>
+                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">3 Credits</span>
                                 <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-sky-100 text-sky-800 ml-1">K-2018</span>
-                                <div class="font-bold text-slate-800 mt-1.5">ANALISIS DATA GEOFISIKA</div>
+                                <div class="font-bold text-slate-800 mt-1.5">GEOPHYSICAL DATA ANALYSIS</div>
                             </td>
-                            <td class="p-4 align-top">1. Nanang Dwi Ardi, S.Si., M.T.</td>
                             <td class="p-4 align-top text-slate-600 text-xs leading-relaxed">
-                                Lab Bumi Antariksa N 220<br>
-                                <span class="text-slate-400">Gedung JICA FPMIPA A Lt. 2</span>
+                                Space & Earth Science Lab N 220<br>
+                                <span class="text-slate-400">JICA FPMIPA A Building, 2nd Floor</span>
                             </td>
                             <td class="text-center p-4 align-top">
                                 <span class="font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded text-xs">FIS-7</span>
-                                <div class="text-[11px] text-slate-400 mt-1">Kap: 30</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Cap: 30</div>
                             </td>
                         </tr>
-                        <tr class="jk-row even:bg-slate-50/50" data-hari="selasa">
+                        <tr class="jk-row even:bg-slate-50/50" data-hari="tuesday">
                             <td class="text-center font-bold p-4">2</td>
                             <td class="p-4 align-top">
-                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-blue-100 text-blue-800">Selasa</span>
+                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-blue-100 text-blue-800">Tuesday</span>
                                 <div class="font-semibold text-slate-600">13:00 - 15:30</div>
                             </td>
                             <td class="p-4 align-top">
                                 <span class="font-mono font-bold bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-xs">FI407</span>
-                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">3 SKS</span>
+                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">3 Credits</span>
                                 <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-sky-100 text-sky-800 ml-1">K-2024</span>
-                                <div class="font-bold text-slate-800 mt-1.5">EKSPLORASI GEOFISIKA</div>
+                                <div class="font-bold text-slate-800 mt-1.5">GEOPHYSICAL EXPLORATION</div>
                             </td>
-                            <td class="p-4 align-top">1. Nanang Dwi Ardi, S.Si., M.T.<br>2. Lasmita Sari, M.Si.</td>
                             <td class="p-4 align-top text-slate-600 text-xs leading-relaxed">
-                                Lab Bumi Antariksa N 220<br>
-                                <span class="text-slate-400">Gedung JICA FPMIPA A Lt. 2</span>
+                                Space & Earth Science Lab N 220<br>
+                                <span class="text-slate-400">JICA FPMIPA A Building, 2nd Floor</span>
                             </td>
                             <td class="text-center p-4 align-top">
                                 <span class="font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded text-xs">FIS-5AB-GEO</span>
-                                <div class="text-[11px] text-slate-400 mt-1">Kap: 30</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Cap: 30</div>
                             </td>
                         </tr>
-                        <tr class="jk-row even:bg-slate-50/50" data-hari="selasa">
+                        <tr class="jk-row even:bg-slate-50/50" data-hari="tuesday">
                             <td class="text-center font-bold p-4">3</td>
                             <td class="p-4 align-top">
-                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-blue-100 text-blue-800">Selasa</span>
+                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-blue-100 text-blue-800">Tuesday</span>
                                 <div class="font-semibold text-slate-600">15:30 - 18:00</div>
                             </td>
                             <td class="p-4 align-top">
                                 <span class="font-mono font-bold bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-xs">FI564</span>
-                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">3 SKS</span>
+                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">3 Credits</span>
                                 <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-sky-100 text-sky-800 ml-1">K-2018</span>
-                                <div class="font-bold text-slate-800 mt-1.5">EKSPLORASI GEOFISIKA</div>
+                                <div class="font-bold text-slate-800 mt-1.5">GEOPHYSICAL EXPLORATION</div>
                             </td>
-                            <td class="p-4 align-top">1. Nanang Dwi Ardi, S.Si., M.T.</td>
                             <td class="p-4 align-top text-slate-600 text-xs leading-relaxed">
-                                Lab Bumi Antariksa N 220<br>
-                                <span class="text-slate-400">Gedung JICA FPMIPA A Lt. 2</span>
+                                Space & Earth Science Lab N 220<br>
+                                <span class="text-slate-400">JICA FPMIPA A Building, 2nd Floor</span>
                             </td>
                             <td class="text-center p-4 align-top">
                                 <span class="font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded text-xs">FIS-7</span>
-                                <div class="text-[11px] text-slate-400 mt-1">Kap: 30</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Cap: 30</div>
                             </td>
                         </tr>
                         
-                        <!-- HARI RABU -->
-                        <tr class="jk-row even:bg-slate-50/50" data-hari="rabu">
+                        <!-- WEDNESDAY -->
+                        <tr class="jk-row even:bg-slate-50/50" data-hari="wednesday">
                             <td class="text-center font-bold p-4">4</td>
                             <td class="p-4 align-top">
-                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-amber-100 text-amber-800">Rabu</span>
+                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-amber-100 text-amber-800">Wednesday</span>
                                 <div class="font-semibold text-slate-600">13:00 - 14:40</div>
                             </td>
                             <td class="p-4 align-top">
                                 <span class="font-mono font-bold bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-xs">FI209</span>
-                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">2 SKS</span>
+                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">2 Credits</span>
                                 <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-sky-100 text-sky-800 ml-1">K-2024</span>
-                                <div class="font-bold text-slate-800 mt-1.5">TEKNOLOGI INFORMASI DAN KOMUNIKASI</div>
+                                <div class="font-bold text-slate-800 mt-1.5">INFORMATION & COMMUNICATION TECHNOLOGY</div>
                             </td>
-                            <td class="p-4 align-top">1. Nanang Dwi Ardi, S.Si., M.T.</td>
                             <td class="p-4 align-top text-slate-600 text-xs leading-relaxed">
-                                Ruang Kuliah FPMIPA (E - 405)<br>
-                                <span class="text-slate-400">Gedung JICA FPMIPA A Lt. 4</span>
+                                FPMIPA Lecture Room (E - 405)<br>
+                                <span class="text-slate-400">JICA FPMIPA A Building, 4th Floor</span>
                             </td>
                             <td class="text-center p-4 align-top">
                                 <span class="font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded text-xs">FIS-3AB</span>
-                                <div class="text-[11px] text-slate-400 mt-1">Kap: 85</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Cap: 85</div>
                             </td>
                         </tr>
-                        <tr class="jk-row even:bg-slate-50/50" data-hari="rabu">
+                        <tr class="jk-row even:bg-slate-50/50" data-hari="wednesday">
                             <td class="text-center font-bold p-4">5</td>
                             <td class="p-4 align-top">
-                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-amber-100 text-amber-800">Rabu</span>
+                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-amber-100 text-amber-800">Wednesday</span>
                                 <div class="font-semibold text-slate-600">15:30 - 17:10</div>
                             </td>
                             <td class="p-4 align-top">
                                 <span class="font-mono font-bold bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-xs">FI340</span>
-                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">2 SKS</span>
+                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">2 Credits</span>
                                 <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-sky-100 text-sky-800 ml-1">K-2024</span>
-                                <div class="font-bold text-slate-800 mt-1.5">FISIKA GUNUNG API</div>
+                                <div class="font-bold text-slate-800 mt-1.5">VOLCANOLOGY</div>
                             </td>
-                            <td class="p-4 align-top">1. Nanang Dwi Ardi, S.Si., M.T.<br>2. Suci Ramayanti, S.Pd., M.Si., Ph.D.</td>
                             <td class="p-4 align-top text-slate-600 text-xs leading-relaxed">
-                                Ruang Kuliah FPMIPA (E - 405)<br>
-                                <span class="text-slate-400">Gedung JICA FPMIPA A Lt. 4</span>
+                                FPMIPA Lecture Room (E - 405)<br>
+                                <span class="text-slate-400">JICA FPMIPA A Building, 4th Floor</span>
                             </td>
                             <td class="text-center p-4 align-top">
                                 <span class="font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded text-xs">FIS-3AB</span>
-                                <div class="text-[11px] text-slate-400 mt-1">Kap: 85</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Cap: 85</div>
                             </td>
                         </tr>
 
-                        <!-- HARI KAMIS -->
-                        <tr class="jk-row even:bg-slate-50/50" data-hari="kamis">
+                        <!-- THURSDAY -->
+                        <tr class="jk-row even:bg-slate-50/50" data-hari="thursday">
                             <td class="text-center font-bold p-4">6</td>
                             <td class="p-4 align-top">
-                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-emerald-100 text-emerald-800">Kamis</span>
+                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-emerald-100 text-emerald-800">Thursday</span>
                                 <div class="font-semibold text-slate-600">10:20 - 12:00</div>
                             </td>
                             <td class="p-4 align-top">
                                 <span class="font-mono font-bold bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-xs">FI505</span>
-                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">2 SKS</span>
+                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">2 Credits</span>
                                 <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-sky-100 text-sky-800 ml-1">K-2018</span>
-                                <div class="font-bold text-slate-800 mt-1.5">METEOROLOGI DAN CUACA ANTARIKSA</div>
+                                <div class="font-bold text-slate-800 mt-1.5">METEOROLOGI & SPACE WEATHER</div>
                             </td>
-                            <td class="p-4 align-top">1. Nanang Dwi Ardi, S.Si., M.T.</td>
                             <td class="p-4 align-top text-slate-600 text-xs leading-relaxed">
-                                Lab Elektronika N 305<br>
-                                <span class="text-slate-400">Gedung JICA FPMIPA A Lt. 3</span>
+                                Electronics Lab N 305<br>
+                                <span class="text-slate-400">JICA FPMIPA A Building, 3rd Floor</span>
                             </td>
                             <td class="text-center p-4 align-top">
                                 <span class="font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded text-xs">FIS-7</span>
-                                <div class="text-[11px] text-slate-400 mt-1">Kap: 30</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Cap: 30</div>
                             </td>
                         </tr>
-                        <tr class="jk-row even:bg-slate-50/50" data-hari="kamis">
+                        <tr class="jk-row even:bg-slate-50/50" data-hari="thursday">
                             <td class="text-center font-bold p-4">7</td>
                             <td class="p-4 align-top">
-                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-emerald-100 text-emerald-800">Kamis</span>
+                                <span class="inline-block px-2.5 py-1 rounded text-xs font-bold mb-1 bg-emerald-100 text-emerald-800">Thursday</span>
                                 <div class="font-semibold text-slate-600">13:00 - 15:30</div>
                             </td>
                             <td class="p-4 align-top">
                                 <span class="font-mono font-bold bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded text-xs">FI202</span>
-                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">3 SKS</span>
+                                <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-purple-100 text-purple-800 ml-1">3 Credits</span>
                                 <span class="inline-block text-[11px] px-1.5 py-0.5 rounded font-semibold bg-sky-100 text-sky-800 ml-1">K-2024</span>
-                                <div class="font-bold text-slate-800 mt-1.5">ALGORITMA DAN PEMROGRAMAN</div>
+                                <div class="font-bold text-slate-800 mt-1.5">ALGORITHMS & PROGRAMMING</div>
                             </td>
-                            <td class="p-4 align-top">1. Nanang Dwi Ardi, S.Si., M.T.<br>2. Mohammad Dharul Asmawan, M.Si.</td>
                             <td class="p-4 align-top text-slate-600 text-xs leading-relaxed">
-                                Lab Komputasi Fisika B 407<br>
-                                <span class="text-slate-400">FPMIPA B Lt. 4</span>
+                                Physics Computation Lab B 407<br>
+                                <span class="text-slate-400">FPMIPA B Building, 4th Floor</span>
                             </td>
                             <td class="text-center p-4 align-top">
                                 <span class="font-bold text-violet-700 bg-violet-50 px-2 py-0.5 rounded text-xs">FIS-1B</span>
-                                <div class="text-[11px] text-slate-400 mt-1">Kap: 45</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Cap: 45</div>
                             </td>
                         </tr>
                     </tbody>
@@ -590,9 +582,43 @@
     </div>
 </section>
 
-<!-- LOGIKAL JAVASCRIPT UNTUK ACCORDION & SORT FILTER -->
+<!-- JAVASCRIPT LOGIC FOR ACCORDION & DAY FILTER -->
 <script>
-    // Fungsi Buka-Tutup Tabel (Accordion)
+    // Toggle Accordion Visibility
+    function toggleJadwal() {
+        const content = document.getElementById('jk-content');
+        const chevron = document.getElementById('jk-chevron');
+        
+        content.classList.toggle('hidden');
+        chevron.classList.toggle('rotate-180');
+    }
+
+    // Day Filter Functionality
+    function filterHari(hari) {
+        const rows = document.querySelectorAll('.jk-row');
+        const buttons = document.querySelectorAll('.jk-btn-filter');
+
+        // Reset all buttons to inactive styling
+        buttons.forEach(btn => {
+            btn.classList.remove('bg-slate-900', 'text-white');
+            btn.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+        });
+        
+        // Highlight active clicked button
+        const activeBtn = document.getElementById(`btn-${hari}`);
+        activeBtn.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+        activeBtn.classList.add('bg-slate-900', 'text-white');
+
+        // Show/Hide table rows according to selected day
+        rows.forEach(row => {
+            if (hari === 'all' || row.getAttribute('data-hari') === hari) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+</script>
     function toggleJadwal() {
         const content = document.getElementById('jk-content');
         const chevron = document.getElementById('jk-chevron');
