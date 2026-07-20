@@ -380,8 +380,8 @@
 <section id="teaching-schedule" class="py-12 px-5 bg-slate-50 font-sans">
     <div class="max-w-6xl mx-auto">
         
-        <!-- HEADER BAR -->
-        <button onclick="toggleJadwal()" class="w-full flex items-center justify-between bg-slate-900 text-white p-5 rounded-t-lg shadow-md hover:bg-slate-800 transition-all focus:outline-none">
+        <!-- HEADER BAR (Trigger Button) -->
+        <button id="jk-trigger-btn" class="w-full flex items-center justify-between bg-slate-900 text-white p-5 rounded-t-lg shadow-md hover:bg-slate-800 transition-all focus:outline-none">
             <div class="flex items-center space-x-3 text-left">
                 <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -391,6 +391,7 @@
                     <p class="text-xs text-slate-400">Click here to expand or collapse the schedule details</p>
                 </div>
             </div>
+            <!-- Arrow Icon -->
             <svg id="jk-chevron" class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -402,10 +403,10 @@
             <!-- DAY FILTER BUTTONS -->
             <div class="flex flex-wrap gap-2 mb-6 pb-4 border-b border-slate-100 items-center">
                 <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider mr-2">Filter by Day:</span>
-                <button onclick="filterHari('all')" id="btn-all" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-900 text-white">All Days</button>
-                <button onclick="filterHari('tuesday')" id="btn-tuesday" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Tuesday</button>
-                <button onclick="filterHari('wednesday')" id="btn-wednesday" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Wednesday</button>
-                <button onclick="filterHari('thursday')" id="btn-thursday" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Thursday</button>
+                <button id="btn-all" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-900 text-white">All Days</button>
+                <button id="btn-tuesday" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Tuesday</button>
+                <button id="btn-wednesday" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Wednesday</button>
+                <button id="btn-thursday" class="jk-btn-filter px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">Thursday</button>
             </div>
 
             <!-- TABLE CONTAINER -->
@@ -579,7 +580,53 @@
         </div>
 
     </div>
-</section><!-- JAVASCRIPT LOGIC FOR ACCORDION & DAY FILTER -->
+</section>
+
+<!-- SECURE JAVASCRIPT BLOCK -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const triggerBtn = document.getElementById('jk-trigger-btn');
+        const content = document.getElementById('jk-content');
+        const chevron = document.getElementById('jk-chevron');
+        
+        // 1. Accordion Click Event
+        if(triggerBtn) {
+            triggerBtn.addEventListener('click', function() {
+                content.classList.toggle('hidden');
+                chevron.classList.toggle('rotate-180');
+            });
+        }
+
+        // 2. Filter Days Click Event
+        const filterButtons = document.querySelectorAll('.jk-btn-filter');
+        const rows = document.querySelectorAll('.jk-row');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const selectedDay = this.id.replace('btn-', '');
+
+                // Reset styling semua tombol filter
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-slate-900', 'text-white');
+                    btn.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                });
+
+                // Set tombol aktif
+                this.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                this.classList.add('bg-slate-900', 'text-white');
+
+                // Sembunyikan/Tampilkan Baris Tabel
+                rows.forEach(row => {
+                    if (selectedDay === 'all' || row.getAttribute('data-hari') === selectedDay) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
 </script>
     <section id="contact" class="py-20 bg-slate-900 text-white border-t border-slate-800">
         <div class="max-w-3xl mx-auto px-4 text-center">
